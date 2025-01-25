@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('role', ['inventor', 'user', 'admin']); //masalah penyimanan ke database, hanya array 1 yang tersimpan
+            $table->enum('role', ['inventor', 'user', 'admin']); // Masalah penyimanan ke database, hanya array 1 yang tersimpan
             $table->rememberToken();
             $table->timestamps();
         });
