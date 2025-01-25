@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('admin.data-pengguna', absolute: false));
+        return redirect()->intended(route('inventor.dashboard-inventor', absolute: false));
     }
 
     /**

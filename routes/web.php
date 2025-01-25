@@ -2,15 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BarangController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/data-pengguna', function () {
-    return view('admin.data-pengguna');
-})->middleware(['auth', 'verified'])->name('admin.data-pengguna');
+Route::get('/inventor/dashboard-inventor', function () {
+    return view('inventor.dashboard-inventor');
+})->middleware(['auth', 'verified'])->name('inventor.dashboard-inventor');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -19,19 +20,22 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    // Show all users
     Route::get('/admin/data-pengguna', [UserController::class, 'index'])->name('admin.data-pengguna');
-
-    // Edit a user
     Route::get('/admin/data-pengguna/{id}/edit', [UserController::class, 'edit'])->name('admin.data-pengguna.edit');
-
-    // Update a user
     Route::patch('/admin/data-pengguna/{id}', [UserController::class, 'update'])->name('admin.data-pengguna.update');
-
     Route::delete('/admin/data-pengguna/{id}', [UserController::class, 'destroy'])->name('admin.data-pengguna.destroy');
-
     Route::get('/admin/tambah-data', [UserController::class, 'create'])->name('admin.tambah-data.create');
     Route::post('/admin/tambah-data', [UserController::class, 'store'])->name('admin.tambah-data.store');
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/inventor/dashboard-inventor', [BarangController::class, 'index'])->name('inventor.dashboard-inventor');
+    Route::get('/inventor/dashboard-inventor/{id}/editBarang', [BarangController::class, 'editBarang'])->name('inventor.dashboard-inventor.editBarang');
+    Route::patch('/inventor/dashboard-inventor/{id}', [BarangController::class, 'updateBarang'])->name('inventor.dashboard-inventor.updateBarang');
+    Route::delete('/inventor/dashboard-inventor/{id}', [BarangController::class, 'destroyBarang'])->name('inventor.dashboard-inventor.destroyBarang');
+    Route::get('/inventor/tambah-barang', [BarangController::class, 'createBarang'])->name('inventor.tambah-barang.createBarang');
+    Route::post('/inventor/tambah-barang', [BarangController::class, 'storeBarang'])->name('inventor.tambah-barang.storeBarang');
+    Route::get('/inventor/dashboard-inventor/{id}', [BarangController::class, 'show'])->name('inventor.dashboard-inventor.detailBarang');
 
 });
 

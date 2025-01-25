@@ -1,6 +1,5 @@
 <?php
 
-// In UserController.php
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -8,7 +7,6 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // Method to display the list of users
     public function index()
     {
         $users = User::all();
