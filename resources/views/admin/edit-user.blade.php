@@ -31,12 +31,9 @@
                         <div class="mt-4">
                             <x-input-label for="role" :value="__('Role')" />
                             <div class="relative">
-                                <select id="role" name="role" class="block mt-1 w-full pr-10 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-900" required autocomplete="role">
-                                    <option value="" disabled {{ old('role') ? '' : 'selected' }}>Select Role</option>
-                                    <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
-                                    <option value="inventor" {{ old('role') == 'inventor' ? 'selected' : '' }}>Inventator</option>
-                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Administrator</option>
-                                </select>
+                                <span class="block mt-1 px-3 w-full pr-10 py-2 border border-gray-600 rounded-md bg-gray-100 text-gray-600 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-900">
+                                    {{ $user->role }}
+                                </span>
                             </div>
                             <x-input-error :messages="$errors->get('role')" class="mt-2" />
                         </div>

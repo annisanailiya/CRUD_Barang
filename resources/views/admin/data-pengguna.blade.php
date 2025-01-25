@@ -19,11 +19,6 @@
                     <!-- Tombol Tambah Pengguna -->
                     <div class="mb-4 flex justify-between items-center">
                         <p>{{ __("Tabel Data Pengguna") }}</p>
-                        <x-primary-button>
-                            <a href="{{ route('admin.tambah-data.create') }}">
-                                {{ __('Tambah Data') }}
-                            </a>
-                        </x-primary-button>
                     </div>
                     <table class="table-auto w-full border-collapse border border-gray-300 mt-6">
                         <thead>

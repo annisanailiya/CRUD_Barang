@@ -42,25 +42,20 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('admin.edit-user', compact('user'));
     }
-    
+
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:user,admin,inventor',
-        ]);
+{
+    // Validasi input
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email,' . $id,
+    ]);
 
-        $user = User::findOrFail($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'role' => $request->role,
-        ]);
+    $user = User::findOrFail($id);
+    $user->update($validatedData);
 
-        return redirect()->route('admin.data-pengguna')->with('success', 'User updated successfully!');
-    }
+    return redirect()->route('admin.data-pengguna')->with('success', 'Data pengguna berhasil diperbarui.');
+}
 
     public function destroy($id)
     {
