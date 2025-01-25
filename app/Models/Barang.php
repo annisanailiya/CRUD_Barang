@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barang extends Model
 {
-    use HasFactory;  // Pastikan trait ini ada
+    use HasFactory;
 
     protected $fillable = [
         'nama_barang',

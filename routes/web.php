@@ -9,9 +9,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/inventor/dashboard-inventor', function () {
-    return view('inventor.dashboard-inventor');
-})->middleware(['auth', 'verified'])->name('inventor.dashboard-inventor');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/admin/data-pengguna', [UserController::class, 'dashboard'])->name('admin.data-pengguna');
+    Route::get('/inventor/dashboard-inventor', [UserController::class, 'dashboard'])->name('inventor.dashboard-inventor');
+    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

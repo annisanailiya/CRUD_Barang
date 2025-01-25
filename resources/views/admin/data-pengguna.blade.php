@@ -44,6 +44,7 @@
                                     <td class="border border-gray-300 px-6 py-2">{{ $user->role }}</td>
                                     <td class="border border-gray-300 px-6 py-2">
                                         <div class="flex mr-12 gap-2 justify-center">
+                                            <!-- Edit Button -->
                                             <x-primary-button>
                                                 <a href="{{ route('admin.data-pengguna.edit', $user->id) }}">Edit</a>
                                             </x-primary-button>
@@ -66,14 +67,12 @@
             if (successAlert) {
                 setTimeout(() => {
                     successAlert.style.display = 'none';
-                }, 2000); // 2000 milliseconds = 2 seconds
+                }, 2000);
             }
         });
 
-        // Function to send DELETE request
         function deleteUser(userId) {
             if (confirm("Are you sure you want to delete this user?")) {
-                // Send DELETE request to the backend
                 fetch(`/admin/data-pengguna/${userId}`, {
                     method: 'DELETE',
                     headers: {
@@ -84,7 +83,6 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {
-                        // Remove the user row from the table
                         const userRow = document.getElementById(`user-${userId}`);
                         userRow.remove();
                     } else {

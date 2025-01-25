@@ -70,14 +70,12 @@
             if (successAlert) {
                 setTimeout(() => {
                     successAlert.style.display = 'none';
-                }, 2000); // 2000 milliseconds = 2 seconds
+                }, 2000);
             }
         });
 
-        // Function to send DELETE request
         function deleteBarang(barangId) {
             if (confirm("Are you sure you want to delete this?")) {
-                // Send DELETE request to the backend
                 fetch(`/inventor/dashboard-inventor/${barangId}`, {
                     method: 'DELETE',
                     headers: {
