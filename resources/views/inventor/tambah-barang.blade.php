@@ -19,18 +19,11 @@
                             <x-input-error :messages="$errors->get('nama_barang')" class="mt-2" />
                         </div>
 
-                        <!-- Stok Baru -->
+                        <!-- Stok  -->
                         <div class="mt-4">
-                            <x-input-label for="stok_baru" :value="__('Stok Baru')" />
+                            <x-input-label for="stok_baru" :value="__('Stok')" />
                             <x-text-input id="stok_baru" class="block mt-1 w-full" type="number" name="stok_baru" :value="old('stok_baru')" required autocomplete="stok_baru" />
                             <x-input-error :messages="$errors->get('stok_baru')" class="mt-2" />
-                        </div>
-
-                        <!-- Stok Bekas -->
-                        <div class="mt-4">
-                            <x-input-label for="stok_bekas" :value="__('Stok Bekas')" />
-                            <x-text-input id="stok_bekas" class="block mt-1 w-full" type="number" name="stok_bekas" :value="old('stok_bekas')" required autocomplete="stok_bekas" />
-                            <x-input-error :messages="$errors->get('stok_bekas')" class="mt-2" />
                         </div>
 
                         <!-- Kondisi -->
@@ -52,21 +45,7 @@
                             <x-text-input id="kategori" class="block mt-1 w-full" type="text" name="kategori" :value="old('kategori')" required autocomplete="kategori" />
                             <x-input-error :messages="$errors->get('kategori')" class="mt-2" />
                         </div>
-
-                        <!-- Gambar -->
-                        <div class="mt-4">
-                            <x-input-label for="gambar" :value="__('Gambar')" />
-                            <x-text-input id="gambar" class="block mt-1 w-full" type="file" name="gambar" accept="image/*" required />
-                            <x-input-error :messages="$errors->get('gambar')" class="mt-2" />
-                        </div>
-
-                        <!-- Deskripsi -->
-                        <div class="mt-4">
-                            <x-input-label for="deskripsi" :value="__('Deskripsi')" />
-                            <textarea id="deskripsi" class="block mt-1 w-full rounded-md border-gray-300 dark:bg-gray-900 dark:text-gray-600" name="deskripsi" required>{{ old('deskripsi') }}</textarea>
-                            <x-input-error :messages="$errors->get('deskripsi')" class="mt-2" />
-                        </div>
-
+                        
                         <div class="flex items-center justify-end mt-6">
                             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('inventor.dashboard-inventor') }}">
                                 {{ __('Kembali ke Data Barang') }}

@@ -73,4 +73,10 @@ class BarangController extends Controller
         return response()->json(['success' => false], 400);
     }
 
+    public function detailBarang($id)
+    {
+        $barang = Barang::findOrFail($id);
+        return view('inventor.detail-barang', compact('barang'));
+    }
+
 }

@@ -37,7 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/inventor/dashboard-inventor/{id}', [BarangController::class, 'destroyBarang'])->name('inventor.dashboard-inventor.destroyBarang');
     Route::get('/inventor/tambah-barang', [BarangController::class, 'createBarang'])->name('inventor.tambah-barang.createBarang');
     Route::post('/inventor/tambah-barang', [BarangController::class, 'storeBarang'])->name('inventor.tambah-barang.storeBarang');
-    Route::get('/inventor/dashboard-inventor/{id}', [BarangController::class, 'show'])->name('inventor.dashboard-inventor.detailBarang');
+    Route::get('/barang/detail/{id}', [BarangController::class, 'detailBarang'])->name('inventor.dashboard-inventor.detailBarang');
 
 });
 
