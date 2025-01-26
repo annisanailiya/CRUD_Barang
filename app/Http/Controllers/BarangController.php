@@ -14,6 +14,13 @@ class BarangController extends Controller
         return view('inventor.dashboard-inventor', compact('barangs'));
     }
 
+    public function indexUser()
+    {
+        $barangs = Barang::all();
+        return view('user.dashboard', compact('barangs'));
+    }
+
+
     public function createBarang()
     {
         return view('inventor.tambah-barang');

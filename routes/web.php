@@ -43,4 +43,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/barang/{id}/image', [BarangController::class, 'showImage'])->name('barang.showImage');
 });
 
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/user/dashboard', [BarangController::class, 'indexUser'])->name('user.dashboard');
+});
+
 require __DIR__.'/auth.php';

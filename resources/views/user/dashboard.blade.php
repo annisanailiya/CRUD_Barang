@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Data Barang') }}
         </h2>
     </x-slot>
 
@@ -18,30 +18,29 @@
                             <tr class="bg-gray-200 dark:bg-gray-700">
                                 <th class="border border-gray-300 px-4 py-2">No</th>
                                 <th class="border border-gray-300 px-4 py-2">Nama Barang</th>
-                                <th class="border border-gray-300 px-4 py-2">Jumlah Stok</th>
                                 <th class="border border-gray-300 px-4 py-2">Kategori</th>
+                                <th class="border border-gray-300 px-4 py-2">Jumlah Stok</th>
+                                <th class="border border-gray-300 px-4 py-2">Stok Baru</th>
+                                <th class="border border-gray-300 px-4 py-2">Stok Bekas</th>
                                 <th class="border border-gray-300 px-4 py-2">Kondisi</th>
-                                <th class="border border-gray-300 px-4 py-2">Aksi</th>
+                                <th class="border border-gray-300 px-4 py-2">Deskripsi</th>
                             </tr>
                         </thead>
-                        {{-- <tbody>
-                            @foreach($barangs as $index => $barang)
+                        <tbody>
+                            @foreach($barangs as $indexUser => $barang)
                                 <tr id="barang-{{ $barang->id }}">
-                                    <td class="text-center border border-gray-300 px-4 py-2">{{ $index + 1 }}</td>
+                                    <td class="text-center border border-gray-300 px-4 py-2">{{ $indexUser + 1 }}</td>
                                     <td class="border border-gray-300 px-6 py-2">{{ $barang->nama_barang }}</td>
-                                    <td class="border border-gray-300 px-6 py-2">{{ $barang->stok_baru + $barang->stok_bekas }}</td>
                                     <td class="border border-gray-300 px-6 py-2">{{ $barang->kategori }}</td>
+                                    <td class="border border-gray-300 px-6 py-2">{{ $barang->stok_baru + $barang->stok_bekas }}</td>
+                                    <td class="border border-gray-300 px-6 py-2">{{ $barang->stok_baru }}</td>
+                                    <td class="border border-gray-300 px-6 py-2">{{ $barang->stok_bekas }}</td>
                                     <td class="border border-gray-300 px-6 py-2">{{ $barang->kondisi }}</td>
-                                    <td class="border border-gray-300 px-6 py-2">
-                                        <div class="flex justify-center gap-2">
-                                            <x-primary-button>
-                                                <a href="{{ route('inventor.dashboard-inventor.detailBarang', $barang->id) }}">Detail</a>
-                                            </x-primary-button>
-                                        </div>
-                                    </td>
+                                    <td class="border border-gray-300 px-6 py-2">{{ $barang->deskripsi }}</td>
+                                    
                                 </tr>
                             @endforeach
-                        </tbody> --}}
+                        </tbody>
                     </table>
                 </div>
             </div>
