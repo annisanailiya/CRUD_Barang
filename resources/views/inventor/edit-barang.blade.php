@@ -20,11 +20,18 @@
                             <x-input-error :messages="$errors->get('nama_barang')" class="mt-2" />
                         </div>
 
-                        <!-- Stok Field -->
+                        <!-- Stok Baru Field -->
                         <div class="mt-4">
                             <x-input-label for="stok_baru" :value="__('Stok Baru')" />
                             <x-text-input id="stok_baru" class="block mt-1 w-full" type="number" name="stok_baru" value="{{ $barang->stok_baru }}" required />
                             <x-input-error :messages="$errors->get('stok_baru')" class="mt-2" />
+                        </div>
+
+                        <!-- Stok Bekas Field -->
+                        <div class="mt-4">
+                            <x-input-label for="stok_bekas" :value="__('Stok Bekas')" />
+                            <x-text-input id="stok_bekas" class="block mt-1 w-full" type="number" name="stok_bekas" value="{{ $barang->stok_bekas }}" required />
+                            <x-input-error :messages="$errors->get('stok_bekas')" class="mt-2" />
                         </div>
 
                         <!-- Kategori Field -->
@@ -38,10 +45,10 @@
                         <div class="mt-4">
                             <x-input-label for="kondisi" :value="__('Kondisi')" />
                             <div class="relative">
-                                <select id="kondisi" name="kondisi" class="block mt-1 w-full pr-10 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 dark:bg-gray-900 dark:text-gray-600 dark:border-gray-900" required autocomplete="kondisi">
-                                    <option value="" disabled {{ old('kondisi') ? '' : 'selected' }}>Pilih Kondisi</option>
-                                    <option value="baru" {{ old('kondisi') == 'baru' ? 'selected' : '' }}>Baru</option>
-                                    <option value="bekas" {{ old('kondisi') == 'bekas' ? 'selected' : '' }}>Bekas</option>
+                                <select id="kondisi" name="kondisi" class="block mt-1 w-full pr-10 py-2 border border-gray-600 rounded-md focus:outline-none focus:ring-2 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-900" required autocomplete="kondisi">
+                                    <option value="" disabled {{ old('kondisi', $barang->kondisi) == '' ? 'selected' : '' }}>Pilih Kondisi</option>
+                                    <option value="baru" {{ old('kondisi', $barang->kondisi) == 'baru' ? 'selected' : '' }}>Baru</option>
+                                    <option value="bekas" {{ old('kondisi', $barang->kondisi) == 'bekas' ? 'selected' : '' }}>Bekas</option>
                                 </select>
                             </div>
                             <x-input-error :messages="$errors->get('kondisi')" class="mt-2" />

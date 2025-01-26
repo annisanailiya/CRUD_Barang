@@ -49,14 +49,17 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',
             'stok_baru' => 'required|integer|min:0',
+            'stok_bekas' => 'required|integer|min:0',
             'kategori' => 'required|string|max:255',
             'kondisi' => 'required|string|max:255',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $barang = Barang::findOrFail($id);
         $barang->update([
             'nama_barang' => $request->nama_barang,
             'stok_baru' => $request->stok_baru,
+            'stok_bekas' => $request->stok_bekas,
             'kategori' => $request->kategori,
             'kondisi' => $request->kondisi,
         ]);
@@ -91,7 +94,7 @@ class BarangController extends Controller
         $barang = Barang::findOrFail($id);
         $image = $barang->gambar;
         $mimeType = mime_content_type($image);
-        
+
         return Response::make($image, 200, [
             'Content-Type' => $mimeType,
             'Content-Disposition' => 'inline; filename="barang-'.$barang->id.'.'.$mimeType.'"',
