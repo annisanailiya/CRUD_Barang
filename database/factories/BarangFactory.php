@@ -12,13 +12,13 @@ class BarangFactory extends Factory
     public function definition()
     {
         return [
-            'nama_barang' => $this->faker->word(),
+            'nama_barang' => $this->faker->word,
             'stok_baru' => $this->faker->numberBetween(10, 100),
             'stok_bekas' => $this->faker->numberBetween(5, 50),
-            'kategori' => $this->faker->word(),
             'kondisi' => $this->faker->randomElement(['baru', 'bekas']),
-            'gambar' => $this->faker->imageUrl(),
-            'deskripsi' => $this->faker->sentence(),
+            'kategori' => $this->faker->word,
+            'gambar' => $this->faker->imageUrl(640, 480, 'technics', true),
+            'deskripsi' => $this->faker->paragraph,
         ];
     }
 }

@@ -39,7 +39,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/inventor/tambah-barang', [BarangController::class, 'createBarang'])->name('inventor.tambah-barang.createBarang');
     Route::post('/inventor/tambah-barang', [BarangController::class, 'storeBarang'])->name('inventor.tambah-barang.storeBarang');
     Route::get('/barang/detail/{id}', [BarangController::class, 'detailBarang'])->name('inventor.dashboard-inventor.detailBarang');
-
+    Route::get('/barang/{id}', [BarangController::class, 'show'])->name('barang.show');
+    Route::get('/barang/{id}/image', [BarangController::class, 'showImage'])->name('barang.showImage');
 });
 
 require __DIR__.'/auth.php';

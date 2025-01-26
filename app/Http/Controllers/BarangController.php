@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class BarangController extends Controller
 {
@@ -79,4 +80,21 @@ class BarangController extends Controller
         return view('inventor.detail-barang', compact('barang'));
     }
 
+    public function show($id)
+    {
+        $barang = Barang::findOrFail($id);
+        return view('barang.show', compact('barang'));
+    }
+
+    public function showImage($id)
+    {
+        $barang = Barang::findOrFail($id);
+        $image = $barang->gambar;
+        $mimeType = mime_content_type($image);
+        
+        return Response::make($image, 200, [
+            'Content-Type' => $mimeType,
+            'Content-Disposition' => 'inline; filename="barang-'.$barang->id.'.'.$mimeType.'"',
+        ]);
+    }
 }

@@ -10,43 +10,78 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form>
-                        <!-- Nama Barang Field -->
-                        <div class="mt-4">
-                            <x-input-label for="nama_barang" :value="__('Nama Barang')" />
-                            <x-text-input id="nama_barang" class="block mt-1 w-full" type="text" name="nama_barang" value="{{ $barang->nama_barang }}" readonly />
+                        <!-- Gambar Barang -->
+                        <div class="mt-6 flex justify-center">
+                            <div class="w-full max-w-3xl p-4 bg-gray-900 rounded-lg border-2 border-gray-400">
+                                <div class="flex justify-center">
+                                    <img src="{{ route('barang.showImage', $barang->id) }}" alt="Gambar Barang" class="h-full object-cover" />
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Stok Field -->
-                        <div class="mt-4">
-                            <x-input-label for="stok_baru" :value="__('Stok Baru')" />
-                            <x-text-input id="stok_baru" class="block mt-1 w-full" type="number" name="stok_baru" value="{{ $barang->stok_baru }}" readonly />
+                        <!-- Tabel Detail Barang -->
+                        <div class="mt-4 flex justify-center">
+                            <table class="w-full text-left text-gray-800 dark:text-gray-200 border-collapse">
+                                <tbody>
+                                    <!-- Nama Barang Field -->
+                                    <tr>
+                                        <td class="py-2 font-semibold">Nama Barang</td>
+                                        <td class="py-2">:</td>
+                                        <td class="py-2" id="nama_barang">{{ $barang->nama_barang }}</td>
+                                    </tr>
+
+                                    <!-- Stok Baru Field -->
+                                    <tr>
+                                        <td class="py-2 font-semibold">Stok Baru</td>
+                                        <td class="py-2">:</td>
+                                        <td class="py-2" id="stok_baru">{{ $barang->stok_baru }}</td>
+                                    </tr>
+
+                                    <!-- Stok Lama Field -->
+                                    <tr>
+                                        <td class="py-2 font-semibold">Stok Bekas</td>
+                                        <td class="py-2">:</td>
+                                        <td class="py-2" id="stok_bekas">{{ $barang->stok_bekas }}</td>
+                                    </tr>
+
+                                    <!-- Kategori Field -->
+                                    <tr>
+                                        <td class="py-2 font-semibold">Kategori</td>
+                                        <td class="py-2">:</td>
+                                        <td class="py-2" id="kategori">{{ $barang->kategori }}</td>
+                                    </tr>
+
+                                    <!-- Kondisi Field -->
+                                    <tr>
+                                        <td class="py-2 font-semibold">Kondisi</td>
+                                        <td class="py-2">:</td>
+                                        <td class="py-2">
+                                            {{ $barang->kondisi == 'baru' ? 'Baru' : 'Bekas' }}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
-                        <!-- Kategori Field -->
-                        <div class="mt-4">
-                            <x-input-label for="kategori" :value="__('Kategori')" />
-                            <x-text-input id="kategori" class="block mt-1 w-full" type="text" name="kategori" value="{{ $barang->kategori }}" readonly />
-                        </div>
-
-                        <!-- Kondisi Field -->
-                        <div class="mt-4">
-                            <x-input-label for="kondisi" :value="__('Kondisi')" />
-                            <div class="relative">
-                                <span class="block px-3 mt-1 w-full py-2 text-gray-900 dark:text-gray-100 border border-gray-900 rounded-md">
-                                    {{ $barang->kondisi == 'baru' ? 'Baru' : 'Bekas' }}
-                                </span>
+                        <!-- Deskripsi Barang -->
+                        <div class="mt-6 flex justify-center">
+                            <div class="w-full max-w-3xl p-4 bg-gray-900 rounded-lg border-2 border-gray-400">
+                                <h3 class="text-xl font-semibold mb-4 text-center">Deskripsi Barang</h3>
+                                <p id="deskripsi_barang" class="text-gray-700 dark:text-gray-300 text-center">
+                                    {{ $barang->deskripsi ?? 'Deskripsi belum tersedia.' }}
+                                </p>
                             </div>
                         </div>
 
                         <!-- Kembali ke Data Barang Button -->
                         <div class="mt-4">
-                            <x-primary-button >
-                                <a href="{{ route('inventor.dashboard-inventor') }}" >
+                            <x-primary-button>
+                                <a href="{{ route('inventor.dashboard-inventor') }}">
+
                                     {{ __('Kembali ke Data Barang') }}
                                 </a>
                             </x-primary-button>
                         </div>
-
                     </form>
                 </div>
             </div>
