@@ -28,6 +28,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/admin/data-pengguna/{id}', [UserController::class, 'destroy'])->name('admin.data-pengguna.destroy');
     Route::get('/admin/tambah-data', [UserController::class, 'create'])->name('admin.tambah-data.create');
     Route::post('/admin/tambah-data', [UserController::class, 'store'])->name('admin.tambah-data.store');
+    Route::get('/admin/data-pengguna/{id}', [UserController::class, 'show']);
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {

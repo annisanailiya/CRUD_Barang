@@ -44,18 +44,17 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    // Validasi input
-    $validatedData = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email,' . $id,
-    ]);
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,' . $id,
+        ]);
 
-    $user = User::findOrFail($id);
-    $user->update($validatedData);
+        $user = User::findOrFail($id);
+        $user->update($validatedData);
 
-    return redirect()->route('admin.data-pengguna')->with('success', 'Data pengguna berhasil diperbarui.');
-}
+        return redirect()->route('admin.data-pengguna')->with('success', 'Data pengguna berhasil diperbarui.');
+    }
 
     public function destroy($id)
     {
@@ -66,6 +65,13 @@ class UserController extends Controller
         }
         return response()->json(['success' => false], 400);
     }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json($user);
+    }
+
 
     public function dashboard()
     {
