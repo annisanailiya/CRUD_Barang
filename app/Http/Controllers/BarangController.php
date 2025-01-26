@@ -28,21 +28,32 @@ class BarangController extends Controller
 
     public function storeBarang(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'nama_barang' => 'required|string|max:255',
-            'stok_baru' => 'required|integer|min:0',
-            'kategori' => 'required|string|max:255',
-            'kondisi' => 'required|string|max:255',
+            'stok_baru' => 'required|integer',
+            'stok_bekas' => 'required|integer',
+            'kondisi' => 'required|string',
+            'kategori' => 'required|string',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'deskripsi' => 'nullable|string',
         ]);
 
-        Barang::create([
-            'nama_barang' => $validated['nama_barang'],
-            'stok_baru' => $validated['stok_baru'],
-            'kategori' => $validated['kategori'],
-            'kondisi' => $validated['kondisi'],
-        ]);
+        $barang = new Barang();
+        $barang->nama_barang = $request->input('nama_barang');
+        $barang->stok_baru = $request->input('stok_baru');
+        $barang->stok_bekas = $request->input('stok_bekas');
+        $barang->kondisi = $request->input('kondisi');
+        $barang->kategori = $request->input('kategori');
+        $barang->deskripsi = $request->input('deskripsi');
 
-        return redirect()->route('inventor.dashboard-inventor')->with('success', 'Barang berhasil ditambahkan');
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('barang_images', 'public');
+            $barang->gambar = $gambarPath;
+        }
+
+        $barang->save();
+
+        return redirect()->route('inventor.dashboard-inventor')->with('success', 'Barang berhasil ditambahkan!');
     }
 
     public function editBarang($id)
